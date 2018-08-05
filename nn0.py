@@ -1,6 +1,6 @@
 import numpy as np
 
-LEARNING_RATE = 0.01
+LEARNING_RATE = 0.1
 
 def sigmoid(x,deriv=False):
     if (deriv==True):
@@ -17,7 +17,7 @@ W = np.random.random((2))
 Y = np.array([0,1,1,1])
 print (W.shape)
 print(Y.shape)
-for i in range(1,2000):
+for i in range(1,4000):
 
     Z = np.dot(X,W)+b
     A = sigmoid(Z)
@@ -32,8 +32,8 @@ for i in range(1,2000):
     print("err:",dZ)
     print("dif",dW)
     print("bias",b)
-    W = W - dW
-    b = b - db
+    W = W - dW*LEARNING_RATE
+    b = b - db*LEARNING_RATE
     print("\n")
     #print(X)
     #print(W)
