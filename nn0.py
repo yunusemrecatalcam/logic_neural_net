@@ -7,7 +7,7 @@ def sigmoid(x,deriv=False):
         return sigmoid(x)*sigmoid(1-x)
     return (1/(1+np.exp(-x)))
 
-X = np.array([#1 #2 #3
+X = np.array([#1 #2
              [0,0],
              [0,1],
              [1,0],
@@ -19,24 +19,22 @@ print (W.shape)
 print(Y.shape)
 for i in range(1,4000):
 
-    Z = np.dot(X,W)+b
+    Z = np.dot(X,W)+b   #Forward Propagation
     A = sigmoid(Z)
 
-    dZ = (A-Y)
+    dZ = (A-Y)          #Backpropagation
     dW = np.dot(dZ,A.T)/4
     db = np.sum(dZ,axis=0,keepdims=True)/4
-    print dW
-    print("out:",A)
-    print("cor:",Y)
-    print("par",(A-Y))
-    print("err:",dZ)
-    print("dif",dW)
-    print("bias",b)
+
+    print("error:",np.sum(dZ,axis=0,keepdims=True))
     W = W - dW*LEARNING_RATE
     b = b - db*LEARNING_RATE
-    print("\n")
-    #print(X)
-    #print(W)
 
-print (W)
-print b
+X_in = np.array([0,0])          # This part is for taking inputs for calculating results
+
+while 1:
+    X_in[0]=input("input 1")
+    X_in[1]=input("input 2")
+    Z = np.dot(X_in,W)+b
+    A=sigmoid(Z)
+    print("result:",A)
