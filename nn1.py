@@ -28,14 +28,13 @@ for i in range(1,2):
 
     Z2 = np.dot(W2,A1)+b2
     A2 = sigmoid(Z2)
-    print (A2)
-    print (Y)
+
     dZ2 = (A2-Y)          #Backpropagation
-    print ("dz2",dZ2)
-    print("a1t",A1.T)
     dW2 = np.dot(dZ2,A1.T)/4
-    db2 = np.sum(dZ2,axis=0,keepdims=True)/4
+    db2 = np.sum(dZ2,axis=1,keepdims=True)/4
     print dW2
+    print("dz2",dZ2)
+    print ("db2",db2)
     dZ1 = np.dot(dW2.T,dZ2.T)
     dW1 = np.dot(dZ1,X)
     db1 = np.sum(dZ1,axis=1,keepdims=True)/4
